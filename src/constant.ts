@@ -1,1 +1,1 @@
-export const DOT_PER_ROW = 24;
+export const DOT_PER_ROW = 48;

@@ -1,3 +1,4 @@
+import { Coordinate } from "./classes";
 import { DOT_PER_ROW } from "./constant";
 
 export const drawDot = (
@@ -5,7 +6,18 @@ export const drawDot = (
   x: number,
   y: number
 ) => {
-  ctx.fillRect(x, y, 2, 2);
+  ctx.fillRect(x, y, 1, 1);
+};
+
+export const drawLine = (
+  ctx: CanvasRenderingContext2D,
+  start: Coordinate,
+  end: Coordinate
+) => {
+  ctx.beginPath();
+  ctx.moveTo(start.x, start.y);
+  ctx.lineTo(end.x, end.y);
+  ctx.stroke();
 };
 
 export const drawDotGrid = (
