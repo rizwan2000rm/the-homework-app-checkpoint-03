@@ -34,13 +34,15 @@ export const drawAngle = (
   vertex2: Coordinate,
   vertex1: Coordinate
 ) => {
-  var dx1 = vertex1.x - vertex2.x;
-  var dy1 = vertex1.y - vertex2.y;
-  var dx2 = vertex3.x - vertex2.x;
-  var dy2 = vertex3.y - vertex2.y;
-  var a1 = Math.atan2(dy1, dx1);
-  var a2 = Math.atan2(dy2, dx2);
-  var a = (((a1 - a2) * 180) / Math.PI + 360) % 360;
+  const dx1 = vertex1.x - vertex2.x;
+  const dy1 = vertex1.y - vertex2.y;
+  const dx2 = vertex3.x - vertex2.x;
+  const dy2 = vertex3.y - vertex2.y;
+  const a1 = Math.atan2(dy1, dx1);
+  const a2 = Math.atan2(dy2, dx2);
+  let a = (((a1 - a2) * 180) / Math.PI + 360) % 360;
+
+  if (a > 180) a = 360 - a;
 
   ctx.save();
   ctx.beginPath();
@@ -55,12 +57,12 @@ export const drawAngles = (
 ) => {
   if (vertices.length < 2) return;
 
-  for (var i = 0; i < vertices.length - 2; i++) {
+  for (let i = 0; i < vertices.length - 2; i++) {
     drawAngle(ctx, vertices[i], vertices[i + 1], vertices[i + 2]);
   }
 
   if (isFormingPolygon(lines)) {
-    var n = vertices.length;
+    const n = vertices.length;
     drawAngle(ctx, vertices[n - 2], vertices[n - 1], vertices[0]);
     drawAngle(ctx, vertices[n - 1], vertices[0], vertices[1]);
   }
